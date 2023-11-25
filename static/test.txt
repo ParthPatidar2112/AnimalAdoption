@@ -1,0 +1,1 @@
+this is a static file which can be viewed by anyone who is surfing over our website
