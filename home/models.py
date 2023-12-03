@@ -28,16 +28,37 @@ class Pet(models.Model):
     def __str__(self):
         return self.name
 
-class AdoptionApplication(models.Model):
-    application_id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False,unique=True)
-    applicant=models.ForeignKey(User,on_delete=models.CASCADE)
-    pet_name=models.ForeignKey(Pet,on_delete=models.CASCADE,related_name='Pet_name')
-    data=models.TextField(blank =True,null=True)
-    status=models.CharField(choices=(('A',("Accepted")),('P',("Pending")),('D',("Decline"))),default="P",max_length=1)
 
-class contact(models.Model):
+    
+class pet_appllication(models.Model):
+    applicant_name=models.TextField(blank =True,null=True)
+    email =models.CharField(max_length=122, blank=True,null =True)
+    phonenumber =models.IntegerField(blank=True,null =True)
+    address=models.TextField(blank=True,null =True)
+    desc =models.TextField(max_length=122, blank=True,null =True)
+    status=models.CharField(max_length=50,default="1")  # 1(pendding) 2(reject) 0(approve)
+ 
+    def __str__(self):
+        return self.applicant_name
+
+class Contact(models.Model):
+    
+
     name = models.CharField(max_length=122)
     email = models.CharField(max_length=122)
     phone = models.CharField(max_length=12)
     desc = models.TextField()
-    date = models.DateField()
+    #date = models.DateField()
+    def __str__(self):
+        return self.name
+
+class user_database(models.Model):
+
+    firstname = models.CharField(max_length=122)
+    lastname = models.CharField(max_length=122)
+    email = models.CharField(max_length=122)
+    password = models.CharField(max_length=122)
+    username = models.CharField(max_length=122)
+    def __str__(self):
+        return self.firstname
+    
